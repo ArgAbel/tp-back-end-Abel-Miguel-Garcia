@@ -5,19 +5,19 @@ export interface IDueno extends Document {
   username: string;
   email: string;
   password: string;
-  role: UserRole;
+  role: UserRole; 
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt: Date; 
 }
 
 const duenoSchema = new Schema<IDueno>(
   {
     username: {
-      type: String,
+      type: String, 
       required: true,
       unique: true,
       trim: true,
-      minlength: 3,
+      minlength: 3, 
     },
     email: {
       type: String,
@@ -33,9 +33,6 @@ const duenoSchema = new Schema<IDueno>(
   { timestamps: true }
 );
 
-duenoSchema.index({ email: 1 });
-duenoSchema.index({ username: 1 });export const User = mongoose.model<IDueno>('User', duenoSchema);
-
 export interface DuenoData {
   id: string;
   username: string;
@@ -44,30 +41,25 @@ export interface DuenoData {
   role: UserRole;
 }
 
-export const findDueno = async (
-  email: string = '',
-  username: string = ''
-): Promise<DuenoData | null> => {
-  const dueno = await User.findOne({ $or: [{ email }, { username }] }).lean();
-  if (!dueno) return null;
+export interface UpdateDuenoDTO extends Partial<Omit<DuenoData, 'id'>> {}
 
+export interface DuenoResponseDTO {
+  id: string;
+  username: string;
+  email: string;
+  role: UserRole;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export const mapToDuenoResponseDTO = (dueno: IDueno): DuenoResponseDTO => {
+  // return {...category.toObject(), id: category._id as string}
   return {
-    id: dueno._id.toString(),
-    username: dueno.username, email: dueno.email,
-    password: dueno.password,
-    role: dueno.role as UserRole,
-  };
-};
-
-export const createDueno = async (
-  dueno: Omit<DuenoData, 'id' | 'role'>
-): Promise<string> => {
-  const newDueno = new User({
     username: dueno.username,
     email: dueno.email,
-    password: dueno.password,
-    role: 'user',
-  });
-  const saved = await newDueno.save();
-  return saved._id.toString();
+    role: dueno.role,
+    createdAt: dueno.createdAt,
+    updatedAt: dueno.updatedAt,
+    id: dueno._id as unknown as string,
+  };
 };
