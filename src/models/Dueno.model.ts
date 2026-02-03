@@ -32,6 +32,7 @@ const duenoSchema = new Schema<IDueno>(
   },
   { timestamps: true }
 );
+export const Dueno = mongoose.model<IDueno>('Dueno', duenoSchema);
 
 export interface DuenoData {
   id: string;
@@ -48,7 +49,7 @@ export interface DuenoResponseDTO {
   username: string;
   email: string;
   role: UserRole;
-  createdAt: Date;
+  createdAt: Date;  
   updatedAt: Date;
 }
 

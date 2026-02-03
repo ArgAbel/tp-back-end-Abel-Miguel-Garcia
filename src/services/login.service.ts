@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { DuenoData, User, UpdateDuenoDTO, DuenoResponseDTO, mapToDuenoResponseDTO, IDueno } from '../models/Dueno.model';
+import { DuenoData, Dueno, UpdateDuenoDTO, DuenoResponseDTO, mapToDuenoResponseDTO, IDueno } from '../models/Dueno.model';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { JwtPayload, UserRole } from '../types/auth';
 import { AppError } from '../types/appErrors';
@@ -17,7 +17,7 @@ export const register = async (
   password: string
 ): Promise<number> => {
   const hashedPassword = await bcrypt.hash(password, 10);
- const user = await User.create({
+ const user = await Dueno.create({
   username,
   email,
   password: hashedPassword,
@@ -31,7 +31,7 @@ export const login = async (
   password: string
 ): Promise<string> => {
   const invalidCredentialsError = new Error('Credenciales inválidas');
-  const user = await User.findOne({ email });
+  const user = await Dueno.findOne({ email });
   
   if (!user) {
     throw new AppError('Credenciales inválidas', 401);//manejo personalizado de errores

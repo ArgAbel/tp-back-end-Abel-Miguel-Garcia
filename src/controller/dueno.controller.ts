@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import * as duenoService from '../services/dueno.service';
-import { DuenoData, User, UpdateDuenoDTO, DuenoResponseDTO, mapToDuenoResponseDTO} from '../models/Dueno.model';
-import { validationResult } from 'express-validator';
+import { DuenoData, UpdateDuenoDTO,} from '../models/Dueno.model';
+
 
 export const getAll = async (_req: Request, res: Response) => {
   try {

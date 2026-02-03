@@ -25,7 +25,7 @@ const Username: ValidationChain[] = [
 export const password: ValidationChain[] = [
   body('password')
     .isLength({ min: 6 })
-    .withMessage('La contraseña debe tener al menos 6 caracteres'),
+    .withMessage('La contraseña debe tener al menos 6 caracteres')
     .notEmpty()
     .withMessage('La contraseña es obligatoria'),
 ];
