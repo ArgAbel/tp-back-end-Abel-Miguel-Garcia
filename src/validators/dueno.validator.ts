@@ -1,7 +1,6 @@
 import { body } from 'express-validator';
 import { ValidationChain } from 'express-validator';
-import { getAllDuenos } from '../services/dueno.service';
-import { remove } from '../controller/dueno.controller';
+
 
 export const validateEmail: ValidationChain[] = [
   body('email')
@@ -9,8 +8,8 @@ export const validateEmail: ValidationChain[] = [
     .withMessage('Debe ser un email válido')
     .normalizeEmail(),
 ];
-const Username: ValidationChain[] = [
-  body('Username')
+const username: ValidationChain[] = [
+  body('username')
     .notEmpty()
     .withMessage('El nombre de usuario es obligatorio')
     .isString()
@@ -28,12 +27,12 @@ export const getDuenoByIdValidator: ValidationChain[] = [
 ];
 
 export const createDuenoValidator: ValidationChain[] = [
-  ...Username,
+  ...username,
   ...validateEmail,
 ];
 
 export const updateDuenoValidator: ValidationChain[] = [
-  ...Username,
+  ...username,
   ...validateEmail,
 ];
 

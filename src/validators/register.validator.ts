@@ -11,7 +11,7 @@ export const validateEmail: ValidationChain[] = [
     .normalizeEmail(),
 ];
 const Username: ValidationChain[] = [
-  body('Username')
+  body('username')
     .notEmpty()
     .withMessage('El nombre de usuario es obligatorio')
     .isString()

@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express';
-import path from 'path';
 import dotenv from 'dotenv';
 import 'dotenv/config';
 import { connectDB } from './config/database';
 import duenoRoutes from './routes/dueno.routes';
-import * as duenoContoller from './controller/dueno.controller';
+import loginRoutes from './routes/login.routes';
 import { authenticate, authorize } from '../src/middleware/auth.middleware';
 
 const app = express();
@@ -13,7 +12,7 @@ dotenv.config();
 app.use(express.json());
 
 app.use('/api/', authenticate, duenoRoutes);
-app.use('/login', duenoRoutes);
+app.use('/login', loginRoutes);
 app.get('/api/saludo', (req: Request, res: Response) => {
   res.json({ mensaje: 'Hola desde la API 🚀' });
 });
