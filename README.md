@@ -9,3 +9,5 @@ npm install express mongoose bcrypt jsonwebtoken express-validator dotenv
 npm install jsonwebtoken bcrypt express-validator express-rate-limit--dependencias para bcrypt
 npm install -D @types/jsonwebtoken @types/bcrypt -- y jwt
 agregamos comando start, build y dev en script de package.json
+
+manejo de erroes centralizados a traver del middleware error.middleware.ts que captura errores enviados atravez de next(err)

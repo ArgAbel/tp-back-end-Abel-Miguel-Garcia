@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { DuenoData, Dueno, UpdateDuenoDTO, DuenoResponseDTO, mapToDuenoResponseDTO, IDueno } from '../models/Dueno.model';
+import { Veterinario, VeterinarioData, IVeterinario } from '../models/Veterinario.model';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { JwtPayload, UserRole } from '../types/auth';
 import { AppError } from '../types/appErrors';
@@ -17,7 +17,7 @@ export const register = async (
   password: string
 ): Promise<number> => {
   const hashedPassword = await bcrypt.hash(password, 10);
- const user = await Dueno.create({
+ const user = await Veterinario.create({
   username,
   email,
   password: hashedPassword,
@@ -31,13 +31,13 @@ export const login = async (
   password: string
 ): Promise<string> => {
   const invalidCredentialsError = new Error('Credenciales inválidas');
-  const user = await Dueno.findOne({ email });
-  
+  const user = await Veterinario.findOne({ email });
+
   if (!user) {
-    throw new AppError('Credenciales inválidas', 401);//manejo personalizado de errores
+    throw new AppError('Credenciales inválidas', 401); // manejo personalizado de errores
   }
-  
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  const isPasswordValid = await bcrypt.compare(password, (user as IVeterinario).password);
   
   if (!isPasswordValid) {
     throw invalidCredentialsError;
