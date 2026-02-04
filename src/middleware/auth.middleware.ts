@@ -12,11 +12,6 @@ declare global {
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-/**
- * Middleware de autenticación
- *
- * Verifica que el token sea válido y lo almacena en req.user
- */
 export const authenticate = (
   req: Request,
   res: Response,
@@ -39,11 +34,7 @@ export const authenticate = (
   });
 };
 
-/**
- * Middleware de autorización
- *
- * Verifica que el usuario tenga uno de los roles permitidos
- */
+
 export const authorize = (roles: Array<'user' | 'admin'>) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user || !roles.includes(req.user.role)) {

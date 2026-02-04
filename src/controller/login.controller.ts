@@ -18,7 +18,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 };
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
-  try {
+    try {
     const { email, password } = req.body;
     
     const token = await loginService.login(email, password);

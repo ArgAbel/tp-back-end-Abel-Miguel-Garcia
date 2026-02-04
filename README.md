@@ -11,3 +11,7 @@ npm install -D @types/jsonwebtoken @types/bcrypt -- y jwt
 agregamos comando start, build y dev en script de package.json
 
 manejo de erroes centralizados a traver del middleware error.middleware.ts que captura errores enviados atravez de next(err)
+
+modelo para servicio de varias veterinarias que en esta parte del proyecto incluye logear y crear veterinarios.
+
+incluye archivo insomnia para comprobacion de rutas

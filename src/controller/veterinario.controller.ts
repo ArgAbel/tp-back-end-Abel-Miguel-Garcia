@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import * as veterinarioService from '../services/veterinario.service';
-import { VeterinarioData, VeterinarioResponseDTO,} from '../models/Veterinario.model';
+import { VeterinarioData,} from '../models/Veterinario.model';
 
 export const getAll = async (_req: Request, res: Response) => {
   try {

@@ -2,6 +2,7 @@ import { Veterinario, VeterinarioData, VeterinarioResponseDTO, mapToVeterinarioR
 
 export const getAllVeterinarios = async (): Promise<VeterinarioResponseDTO[]> => {
   const veterinarios = await Veterinario.find();
+  console.log('Veterinarios encontrados en DB:', veterinarios);
   return veterinarios.map(mapToVeterinarioResponseDTO);
 };
 

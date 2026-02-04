@@ -9,10 +9,10 @@ import validateDto from '../middleware/dto.middleware';
 
 const router: Router = Router();
 
-router.get('/', authenticate, veterinarioController.getAll);
+router.get('/', veterinarioController.getAll);
 router.get('/:id', authenticate, veterinarioController.getById);
 router.post(
-  '/',
+  '/',authenticate,
   authorize(['admin']),
   createVeterinarioValidator,
   validateDto,

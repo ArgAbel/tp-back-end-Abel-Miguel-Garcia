@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { Veterinario, VeterinarioData, IVeterinario } from '../models/Veterinario.model';
+import { Veterinario, IVeterinario } from '../models/Veterinario.model';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { JwtPayload, UserRole } from '../types/auth';
 import { AppError } from '../types/appErrors';

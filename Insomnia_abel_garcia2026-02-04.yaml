@@ -1,0 +1,279 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_4802df8f755944e0a2958b596a0b81cd
+  created: 1770228668614
+  modified: 1770228668614
+  description: ""
+collection:
+  - name: Patitas Felices
+    meta:
+      id: fld_183244f23e41441cb69e038cc2556a35
+      created: 1770229039842
+      modified: 1770229039842
+      sortKey: -1770229039842
+      description: ""
+    children:
+      - url: http://localhost:3000/api/saludo
+        name: Api Saludo
+        meta:
+          id: req_866fff4c559a4d4188b87204e7595e90
+          created: 1770229211509
+          modified: 1770229256521
+          isPrivate: false
+          description: ""
+          sortKey: -1770229211509
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/login
+        name: "login "
+        meta:
+          id: req_c110aed9e29b40efae2dccbe64d894b1
+          created: 1770229262646
+          modified: 1770236638884
+          isPrivate: false
+          description: ""
+          sortKey: -1770229262646
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "email": "administrador@example.com",
+             "password": "AdminPass123!"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/login/register
+        name: register
+        meta:
+          id: req_a718de5b776e439a852c11e93de94f59
+          created: 1770229788767
+          modified: 1770233466102
+          isPrivate: false
+          description: ""
+          sortKey: -1770229788767
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            "email": "admin@example.com",
+            "password": "AdminPass123!"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "http://localhost:3000/login/register "
+        name: crear usuario para admin
+        meta:
+          id: req_1b6141ccd2f84884a7ac90cfb8a70eb9
+          created: 1770230516691
+          modified: 1770230579927
+          isPrivate: false
+          description: ""
+          sortKey: -1770230516691
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {"username": "admin_user",
+             "email": "admin@example.com",
+             "password": "AdminPass123!"}
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/login/register
+        name: register admin
+        meta:
+          id: req_88a62c9e86b14d7eb409fb7f117d9dea
+          created: 1770232154282
+          modified: 1770233508165
+          isPrivate: false
+          description: ""
+          sortKey: -1770232154282
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {"username": "admin_abel",
+            "email": "administrador@example.com",
+            "password": "AdminPass123!"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/
+        name: obtener todos los veterinarios
+        meta:
+          id: req_ef5081c8d1974e95928e206716b91700
+          created: 1770237038779
+          modified: 1770241022930
+          isPrivate: false
+          description: ""
+          sortKey: -1770237038779
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInVzZXJJZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MDIzNjY0MywiZXhwIjoxNzcwMzIzMDQzLCJpc3MiOiJBYmVsIE0gR2FyY2lhIn0.Cyok639M32jqoUItGEbX_DpSNWcjTb3UIow4UCMIWLs
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/:id
+        name: get by id
+        meta:
+          id: req_dc69f443f4c74d6e8957a9d582ad818d
+          created: 1770240429542
+          modified: 1770241855074
+          isPrivate: false
+          description: ""
+          sortKey: -1770240429542
+        method: GET
+        parameters:
+          - name: 6983933a5aaf5d377337c1e6
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInVzZXJJZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MDIzNjY0MywiZXhwIjoxNzcwMzIzMDQzLCJpc3MiOiJBYmVsIE0gR2FyY2lhIn0.Cyok639M32jqoUItGEbX_DpSNWcjTb3UIow4UCMIW
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: http://localhost:3000/api/:id
+        name: delete
+        meta:
+          id: req_8b62214410294a08ab8f3670bfa033a1
+          created: 1770242094830
+          modified: 1770244543888
+          isPrivate: false
+          description: ""
+          sortKey: -1770242094830
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: http://localhost:3000/api/:id?6983933a5aaf5d377337c1e6=
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ?6983933a5aaf5d377337c1e6=
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b87e37ecaabec200138da0618a0fb45c2eaa3ccc
+    created: 1770228668616
+    modified: 1770228668616
+environments:
+  name: Base Environment
+  meta:
+    id: env_b87e37ecaabec200138da0618a0fb45c2eaa3ccc
+    created: 1770228668615
+    modified: 1770237587931
+    isPrivate: false
+  data:
+    '"base_url":': '"http://localhost:3000"'
+    '"mongo_uri"': mongodb+srv://a7m7g7_db_user:mvWpnayedEizqSCP@clusterabel.qhcgr6h.mongodb.net/?appName=clusterabel
+    '"jwt_token"': bearer
+      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInVzZXJJZCI6IjY5ODM5YTExMGJhMDlhNDkyNTMyYjhkNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MDIzNjY0MywiZXhwIjoxNzcwMzIzMDQzLCJpc3MiOiJBYmVsIE0gR2FyY2lhIn0.Cyok639M32jqoUItGEbX_DpSNWcjTb3UIow4UCMIWLs

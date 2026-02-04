@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 app.use(express.json());
 
-app.use('/api/', errorHandler, authenticate, veterinarioRoutes);
+app.use('/api', errorHandler, authenticate, veterinarioRoutes);
 app.use('/login', errorHandler, loginRoutes);
 app.get('/api/saludo', (req: Request, res: Response) => {
   res.json({ mensaje: 'Hola desde la API 🚀' });
