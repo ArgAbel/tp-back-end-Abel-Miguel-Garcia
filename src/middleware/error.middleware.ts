@@ -28,9 +28,9 @@ const handleValidationErrorDB = (error: AnyError) => {
     return new AppError(messages || 'Error de validación', 400);
 };
 
-const handleJWTError = () => new AppError('Token inválido. Por favor inicie sesión de nuevo.', 401);
-const handleJWTExpiredError = () => new AppError('El token ha expirado. Por favor inicie sesión de nuevo.', 401);
-const handleSyntaxError = () => new AppError('JSON inválido en la petición.', 400);
+const handleJWTError =  new AppError('Token inválido. Por favor inicie sesión de nuevo.', 401);
+const handleJWTExpiredError =  new AppError('El token ha expirado. Por favor inicie sesión de nuevo.', 401);
+const handleSyntaxError =  new AppError('JSON inválido en la petición.', 400);
 
 //separa la logica de respuesta por entorno para evitar fuga de informacion
 const sendErrorDev = (err: AnyError, res: Response) => {
@@ -71,9 +71,9 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     else if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     else if (error.name === 'ValidationError') error = handleValidationErrorDB(error);
-    else if (error.name === 'JsonWebTokenError') error = handleJWTError();
-    else if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
-    else if (error instanceof SyntaxError && 'body' in error) error = handleSyntaxError();
+    else if (error.name === 'JsonWebTokenError') error = handleJWTError;
+    else if (error.name === 'TokenExpiredError') error = handleJWTExpiredError;
+    else if (error instanceof SyntaxError && 'body' in error) error = handleSyntaxError;
     else if (error.name === 'MulterError') error = new AppError(error.message || 'Error en la subida de archivos', 400);
 
     if (env === 'development') {

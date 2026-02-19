@@ -1,6 +1,7 @@
 import { body } from 'express-validator';
 import { ValidationChain } from 'express-validator';
 
+
 export const validateEmail: ValidationChain[] = [
   body('email')
     .isEmail()
@@ -19,23 +20,25 @@ const username: ValidationChain[] = [
     ),
 ];
 
-export const getVeterinarioByIdValidator: ValidationChain[] = [
+
+
+export const getUsuarioByIdValidator: ValidationChain[] = [
   body('id')
     .isUUID()
     .withMessage('El ID debe ser un UUID válido'),
 ];
 
-export const createVeterinarioValidator: ValidationChain[] = [
+export const creatUsuarioValidator: ValidationChain[] = [
   ...username,
   ...validateEmail,
 ];
 
-export const updateVeterinarioValidator: ValidationChain[] = [
+export const updateUsuarioValidator: ValidationChain[] = [
   ...username,
   ...validateEmail,
 ];
 
-export const removeVeterinarioValidator: ValidationChain[] = [
+export const removeUsuarioValidator: ValidationChain[] = [
   body('id')
     .isUUID()
     .withMessage('El ID debe ser un UUID válido'),

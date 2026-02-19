@@ -1,10 +1,14 @@
 import bcrypt from 'bcrypt';
-import { Veterinario, IVeterinario } from '../models/Veterinario.model';
+import * as userModel from '../models/Usuario.model';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { JwtPayload, UserRole } from '../types/auth';
 import { AppError } from '../types/appErrors';
+import pool from '../config/database';
+import { Usuario } from '../models/Usuario.model';
+import { RowDataPacket } from 'mysql2/typings/mysql/lib/protocol/packets/RowDataPacket';
+    
 
-
+export type UsuarioRow = Usuario& RowDataPacket;
 
 if (!process.env.JWT_SECRET) {
   throw new Error('JWT_SECRET no definido');
@@ -17,13 +21,13 @@ export const register = async (
   password: string
 ): Promise<number> => {
   const hashedPassword = await bcrypt.hash(password, 10);
- const user = await Veterinario.create({
+ const user = await userModel.createUsuario({
   username,
   email,
   password: hashedPassword,
+  role: 'user',
 });
-return typeof user._id === 'number' ? user._id : Number(user._id);
-};
+  return user;};
 
 
 export const login = async (
@@ -31,21 +35,20 @@ export const login = async (
   password: string
 ): Promise<string> => {
   const invalidCredentialsError = new Error('Credenciales inválidas');
-  const user = await Veterinario.findOne({ email });
-
-  if (!user) {
+    const [rows] = await pool.query<userModel.UsuarioRow[]>(
+    'SELECT * FROM usuarios WHERE email = ? LIMIT 1',
+    [email]
+  );
+  const user = rows[0];
+if (!user) {
     throw new AppError('Credenciales inválidas', 401); // manejo personalizado de errores
   }
 
-  const isPasswordValid = await bcrypt.compare(password, (user as IVeterinario).password);
-  
-  if (!isPasswordValid) {
-    throw invalidCredentialsError;
-  }
-  
+  const isPasswordValid = await bcrypt.compare(password, (user as userModel.UsuarioRow).password);
+    
   const payload: JwtPayload = {
-    id: String(user._id),
-    userId: String(user._id),
+    id: String(user.id),
+    userId: String(user.id),
     role: user.role as UserRole,
   };
   const options: SignOptions = {

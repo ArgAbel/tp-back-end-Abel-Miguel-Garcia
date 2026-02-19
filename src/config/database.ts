@@ -1,24 +1,13 @@
-import mongoose from 'mongoose';
+import mysql from 'mysql2/promise';
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/stock_db';
-
-export const connectDB = async (): Promise<void> => {
-  try {
-    await mongoose.connect(MONGODB_URI);
-    console.log('✅ MongoDB conectado exitosamente');
-  } catch (error) {
-    console.error('❌ Error al conectar MongoDB:', error);
-    process.exit(1);
-  }
-};
-
-mongoose.connection.on('error', (err) => {
-  console.error('❌ Error de MongoDB:', err);
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: Number(process.env.DB_CONNECTION_LIMIT) || 10,
+  queueLimit: 0,
 });
 
-mongoose.connection.on('disconnected', () => {
-  console.log('⚠️ MongoDB desconectado');
-});
-
-export default mongoose;
+export default pool;
